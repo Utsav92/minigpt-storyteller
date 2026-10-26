@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape" data-composition-variables='[
+  {"id":"color-ground","type":"color","label":"Background","default":"#f7f5ef"},
+  {"id":"color-ink","type":"color","label":"Text","default":"#17171c"},
+  {"id":"color-accent","type":"color","label":"Accent","default":"#1d3fcf"}
+]'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #f7f5ef; }
+      #root { position: relative; width: 1920px; height: 1080px; background: #f7f5ef; }
+      #bg { position: absolute; inset: 0; background: var(--color-ground, #f7f5ef); z-index: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="25.0" data-width="1920" data-height="1080">
+      <div id="bg"></div>
+      <div id="title" data-composition-id="title" data-composition-src="compositions/title.html" data-start="0.00" data-duration="3.27" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:1"></div>
+      <div id="model" data-composition-id="model" data-composition-src="compositions/model.html" data-start="3.27" data-duration="5.47" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:2"></div>
+      <div id="samples" data-composition-id="samples" data-composition-src="compositions/samples.html" data-start="8.74" data-duration="13.10" data-track-index="3" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:3"></div>
+      <div id="close" data-composition-id="close" data-composition-src="compositions/close.html" data-start="21.84" data-duration="3.16" data-track-index="4" data-track-kind="graphics" data-width="1920" data-height="1080" style="z-index:4"></div>
+      <audio id="bg-music" data-start="0" data-duration="25" data-track-index="10" data-volume="0.30" data-fade-in="0.4" data-fade-out="1" src="assets/music/happy-beats-business-moves-vol-12-by-ende-dot-app.mp3"></audio>
+      <audio id="sfx-row0" data-start="4.36" data-duration="0.11" data-track-index="11" data-volume="0.5" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-row1" data-start="4.9" data-duration="0.11" data-track-index="12" data-volume="0.5" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-row2" data-start="5.44" data-duration="0.11" data-track-index="13" data-volume="0.5" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-row3" data-start="5.98" data-duration="0.11" data-track-index="14" data-volume="0.5" src="assets/sfx/drop_001.ogg"></audio>
+      <audio id="sfx-s0-0" data-start="8.94" data-duration="0.1" data-track-index="15" data-volume="0.2" src="assets/sfx/keypress-003.wav"></audio>
+      <audio id="sfx-s0-8" data-start="9.04" data-duration="0.1" data-track-index="16" data-volume="0.2" src="assets/sfx/keypress-007.wav"></audio>
+      <audio id="sfx-s0-16" data-start="9.14" data-duration="0.1" data-track-index="11" data-volume="0.2" src="assets/sfx/keypress-012.wav"></audio>
+      <audio id="sfx-s0-24" data-start="9.24" data-duration="0.1" data-track-index="12" data-volume="0.2" src="assets/sfx/keypress-018.wav"></audio>
+      <audio id="sfx-s0-32" data-start="9.34" data-duration="0.1" data-track-index="13" data-volume="0.2" src="assets/sfx/keypress-024.wav"></audio>
+      <audio id="sfx-s0-40" data-start="9.44" data-duration="0.1" data-track-index="14" data-volume="0.2" src="assets/sfx/keypress-029.wav"></audio>
+      <audio id="sfx-s0-48" data-start="9.54" data-duration="0.1" data-track-index="15" data-volume="0.2" src="assets/sfx/keypress-003.wav"></audio>
+      <audio id="sfx-s1-0" data-start="13.31" data-duration="0.1" data-track-index="16" data-volume="0.2" src="assets/sfx/keypress-012.wav"></audio>
+      <audio id="sfx-s1-8" data-start="13.408" data-duration="0.1" data-track-index="11" data-volume="0.2" src="assets/sfx/keypress-018.wav"></audio>
+      <audio id="sfx-s1-16" data-start="13.506" data-duration="0.1" data-track-index="12" data-volume="0.2" src="assets/sfx/keypress-024.wav"></audio>
+      <audio id="sfx-s1-24" data-start="13.604" data-duration="0.1" data-track-index="13" data-volume="0.2" src="assets/sfx/keypress-029.wav"></audio>
+      <audio id="sfx-s1-32" data-start="13.702" data-duration="0.1" data-track-index="14" data-volume="0.2" src="assets/sfx/keypress-003.wav"></audio>
+      <audio id="sfx-s1-40" data-start="13.801" data-duration="0.1" data-track-index="15" data-volume="0.2" src="assets/sfx/keypress-007.wav"></audio>
+      <audio id="sfx-s1-48" data-start="13.899" data-duration="0.1" data-track-index="16" data-volume="0.2" src="assets/sfx/keypress-012.wav"></audio>
+      <audio id="sfx-s2-0" data-start="17.68" data-duration="0.1" data-track-index="11" data-volume="0.2" src="assets/sfx/keypress-024.wav"></audio>
+      <audio id="sfx-s2-8" data-start="17.768" data-duration="0.1" data-track-index="12" data-volume="0.2" src="assets/sfx/keypress-029.wav"></audio>
+      <audio id="sfx-s2-16" data-start="17.856" data-duration="0.1" data-track-index="13" data-volume="0.2" src="assets/sfx/keypress-003.wav"></audio>
+      <audio id="sfx-s2-24" data-start="17.944" data-duration="0.1" data-track-index="14" data-volume="0.2" src="assets/sfx/keypress-007.wav"></audio>
+      <audio id="sfx-s2-32" data-start="18.033" data-duration="0.1" data-track-index="15" data-volume="0.2" src="assets/sfx/keypress-012.wav"></audio>
+      <audio id="sfx-s2-40" data-start="18.121" data-duration="0.1" data-track-index="16" data-volume="0.2" src="assets/sfx/keypress-018.wav"></audio>
+      <audio id="sfx-s2-48" data-start="18.209" data-duration="0.1" data-track-index="11" data-volume="0.2" src="assets/sfx/keypress-024.wav"></audio>
+      <audio id="sfx-s2-56" data-start="18.297" data-duration="0.1" data-track-index="12" data-volume="0.2" src="assets/sfx/keypress-029.wav"></audio>
+      <audio id="sfx-bong" data-start="22.37" data-duration="0.12" data-track-index="13" data-volume="0.6" src="assets/sfx/bong_001.ogg"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.set("#bg", { opacity: 1 }, 0);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

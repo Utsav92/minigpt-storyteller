@@ -1,0 +1,72 @@
+<template>
+  <style>
+    
+@font-face { font-family: 'Segoe UI'; font-weight: 400; src: local('Segoe UI'); }
+@font-face { font-family: 'Segoe UI'; font-weight: 600; src: local('Segoe UI Semibold'); }
+@font-face { font-family: 'Segoe UI'; font-weight: 700; src: local('Segoe UI Bold'); }
+
+    #root { position: absolute; inset: 0; font-family: 'Segoe UI', system-ui, sans-serif; color: #ece9f7; }
+    #out-wrap { position: absolute; inset: 0; }
+    #out-quotebox { position: absolute; left: 160px; top: 0; width: 1600px; height: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #out-label { font-size: 34px; color: #9a96b5; opacity: 0; margin-bottom: 34px; }
+    .ql { font-size: 92px; line-height: 112px; font-weight: 600; color: #ffd9a0; text-align: center; white-space: nowrap; }
+    .typ { display: inline-block; clip-path: inset(-24px 100% -24px -24px); }
+    #out-cap { margin-top: 44px; font-size: 46px; color: #9a96b5; opacity: 0; text-align: center; }
+    #out-title-box { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+    #out-glow { position: absolute; left: 260px; top: 180px; width: 1400px; height: 720px; background: radial-gradient(ellipse at center, rgba(255,180,84,0.9) 0%, rgba(255,180,84,0) 60%); opacity: 0.2; }
+    #out-title { position: relative; font-size: 128px; line-height: 140px; font-weight: 700; letter-spacing: -0.01em; }
+    #out-title span { color: #ffb454; }
+    #out-sub { position: relative; margin-top: 26px; font-size: 48px; color: #9a96b5; }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1920" data-height="1080">
+    <div id="out-wrap" class="clip" data-start="0" data-duration="6.1">
+      <div id="out-quotebox">
+        <div id="out-label">Real output from the model:</div>
+        <div class="ql"><span id="out-q1" class="typ">&ldquo;The red ball hit the ball</span></div>
+        <div class="ql"><span id="out-q2" class="typ">and the red ball.&rdquo;</span></div>
+        <div id="out-cap">It repeats itself. I'm leaving it in.</div>
+      </div>
+      <div id="out-title-box">
+        <div id="out-glow"></div>
+        <div id="out-title">Mini<span>GPT</span> Storyteller</div>
+        <div id="out-sub">Runs entirely in your browser.</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#out-label", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.05);
+    tl.fromTo("#out-q1", { clipPath: "inset(-24px 100% -24px -24px)" }, { clipPath: "inset(-24px -24px -24px -24px)", duration: 0.7, ease: "steps(26)" }, 0.250);
+    tl.fromTo("#out-q2", { clipPath: "inset(-24px 100% -24px -24px)" }, { clipPath: "inset(-24px -24px -24px -24px)", duration: 0.5, ease: "steps(18)" }, 0.950);
+    tl.fromTo("#out-cap", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 1.300);
+    // quote + caption clear just before the final card
+    tl.to("#out-quotebox", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, 3.900);
+    tl.fromTo("#out-title-box", { opacity: 0, filter: "blur(10px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 3.950); // beat-locked: 23.02s (bell at 23.0)
+    tl.to("#out-glow", { opacity: 0.266, duration: 0.0833, ease: "none" }, 3.9500);
+    tl.to("#out-glow", { opacity: 0.291, duration: 0.0833, ease: "none" }, 4.0333);
+    tl.to("#out-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 4.1167);
+    tl.to("#out-glow", { opacity: 0.293, duration: 0.0833, ease: "none" }, 4.2000);
+    tl.to("#out-glow", { opacity: 0.271, duration: 0.0833, ease: "none" }, 4.2833);
+    tl.to("#out-glow", { opacity: 0.265, duration: 0.0833, ease: "none" }, 4.3667);
+    tl.to("#out-glow", { opacity: 0.275, duration: 0.0833, ease: "none" }, 4.4500);
+    tl.to("#out-glow", { opacity: 0.297, duration: 0.0833, ease: "none" }, 4.5333);
+    tl.to("#out-glow", { opacity: 0.297, duration: 0.0833, ease: "none" }, 4.6167);
+    tl.to("#out-glow", { opacity: 0.288, duration: 0.0833, ease: "none" }, 4.7000);
+    tl.to("#out-glow", { opacity: 0.261, duration: 0.0833, ease: "none" }, 4.7833);
+    tl.to("#out-glow", { opacity: 0.256, duration: 0.0833, ease: "none" }, 4.8667);
+    tl.to("#out-glow", { opacity: 0.254, duration: 0.0833, ease: "none" }, 4.9500);
+    tl.to("#out-glow", { opacity: 0.279, duration: 0.0833, ease: "none" }, 5.0333);
+    tl.to("#out-glow", { opacity: 0.286, duration: 0.0833, ease: "none" }, 5.1167);
+    tl.to("#out-glow", { opacity: 0.295, duration: 0.0833, ease: "none" }, 5.2000);
+    tl.to("#out-glow", { opacity: 0.278, duration: 0.0833, ease: "none" }, 5.2833);
+    tl.to("#out-glow", { opacity: 0.28, duration: 0.0833, ease: "none" }, 5.3667);
+    tl.to("#out-glow", { opacity: 0.279, duration: 0.0833, ease: "none" }, 5.4500);
+    tl.to("#out-glow", { opacity: 0.299, duration: 0.0833, ease: "none" }, 5.5333);
+    tl.to("#out-glow", { opacity: 0.298, duration: 0.0833, ease: "none" }, 5.6167);
+    tl.to("#out-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 5.7000);
+    tl.to("#out-glow", { opacity: 0.292, duration: 0.0833, ease: "none" }, 5.7833);
+    tl.to("#out-glow", { opacity: 0.291, duration: 0.0833, ease: "none" }, 5.8667);
+    tl.to("#out-glow", { opacity: 0.282, duration: 0.0833, ease: "none" }, 5.9500);
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

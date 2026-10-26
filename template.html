@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MiniGPT Storyteller</title>
+<style>
+  :root {
+    --bg: #14131a; --panel: #1e1c27; --panel2: #262434; --line: #34314a;
+    --text: #ece9f7; --dim: #9a96b5; --accent: #ffb454; --accent2: #7ee0c3; --gen: #ffd9a0;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 "Segoe UI", system-ui, sans-serif; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 28px 16px 60px; }
+  h1 { margin: 0 0 4px; font-size: 28px; letter-spacing: .3px; }
+  h1 span { color: var(--accent); }
+  .sub { color: var(--dim); margin: 0 0 22px; font-size: 14px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-bottom: 16px; }
+  label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); margin-bottom: 6px; }
+  textarea { width: 100%; min-height: 78px; resize: vertical; background: var(--panel2); color: var(--text);
+    border: 1px solid var(--line); border-radius: 10px; padding: 12px; font: inherit; }
+  textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+  .chip { background: var(--panel2); border: 1px solid var(--line); color: var(--dim); border-radius: 999px;
+    padding: 4px 12px; font-size: 13px; cursor: pointer; }
+  .chip:hover { color: var(--text); border-color: var(--accent); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-top: 16px; }
+  .ctl output { float: right; color: var(--accent2); font-variant-numeric: tabular-nums; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .row { display: flex; gap: 10px; align-items: center; margin-top: 18px; flex-wrap: wrap; }
+  button { border: 0; border-radius: 10px; padding: 11px 22px; font: inherit; font-weight: 600; cursor: pointer; }
+  #go { background: var(--accent); color: #2a1a00; }
+  #go:disabled { opacity: .5; cursor: default; }
+  #stop { background: var(--panel2); color: var(--text); border: 1px solid var(--line); }
+  #out { white-space: pre-wrap; min-height: 140px; font-size: 17px; line-height: 1.7; }
+  #out .p { color: var(--text); } #out .g { color: var(--gen); }
+  .cursor { display: inline-block; width: 8px; height: 1em; background: var(--accent); vertical-align: text-bottom; animation: b 1s steps(2) infinite; }
+  @keyframes b { 50% { opacity: 0; } }
+  .stats { color: var(--dim); font-size: 13px; display: flex; gap: 18px; flex-wrap: wrap; }
+  .stats b { color: var(--text); font-weight: 600; }
+  .note { color: var(--dim); font-size: 13px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Mini<span>GPT</span> Storyteller</h1>
+  <p class="sub">A tiny GPT trained from scratch on TinyStories. It runs entirely in your browser, with no server and no network.</p>
+
+  <div class="card">
+    <label for="prompt">Story prompt</label>
+    <textarea id="prompt">Once upon a time, there was a little bear named Tom.</textarea>
+    <div class="chips" id="chips"></div>
+    <div class="grid">
+      <div class="ctl"><label>Temperature <output id="tv"></output></label><input id="temp" type="range" min="0" max="1.5" step="0.05" value="0.7"></div>
+      <div class="ctl"><label>Top-k <output id="kv"></output></label><input id="topk" type="range" min="1" max="100" step="1" value="40"></div>
+      <div class="ctl"><label>Top-p <output id="pv"></output></label><input id="topp" type="range" min="0.1" max="1" step="0.05" value="0.95"></div>
+      <div class="ctl"><label>Max new tokens <output id="mv"></output></label><input id="maxn" type="range" min="10" max="190" step="5" value="150"></div>
+    </div>
+    <div class="row">
+      <button id="go">Generate story</button>
+      <button id="stop" disabled>Stop</button>
+      <span class="note">Temperature 0 means greedy decoding. End your prompt on a complete word.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div id="out"><span class="note">Your story will appear here.</span></div>
+  </div>
+  <div class="stats" id="stats"></div>
+  <p class="note" id="info"></p>
+</div>
+
+<script>
+const CFG = __CFG__;
+const TOK = __TOK__;
+const WEIGHTS_B64 = "__WEIGHTS__";
+
+// ---------- weights ----------
+function f16(h) {
+  const s = (h & 0x8000) ? -1 : 1, e = (h >> 10) & 31, m = h & 1023;
+  if (e === 0) return s * Math.pow(2, -14) * (m / 1024);
+  if (e === 31) return m ? NaN : s * Infinity;
+  return s * Math.pow(2, e - 15) * (1 + m / 1024);
+}
+const bin = atob(WEIGHTS_B64);
+const u8 = new Uint8Array(bin.length);
+for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+const u16 = new Uint16Array(u8.buffer);
+const lut = new Float32Array(65536);
+for (let i = 0; i < 65536; i++) lut[i] = f16(i);
+let off = 0;
+function take(n) { const a = new Float32Array(n); for (let i = 0; i < n; i++) a[i] = lut[u16[off + i]]; off += n; return a; }
+const { d: D, layers: L, heads: H, ctx: CTX, vocab: V } = CFG;
+const HD = D / H;
+const W = { tok: take(V * D), pos: take(CTX * D), blocks: [] };
+for (let l = 0; l < L; l++) {
+  W.blocks.push({
+    ln1w: take(D), ln1b: take(D), qkvw: take(3 * D * D), qkvb: take(3 * D),
+    projw: take(D * D), projb: take(D), ln2w: take(D), ln2b: take(D),
+    fcw: take(4 * D * D), fcb: take(4 * D), outw: take(4 * D * D), outb: take(D),
+  });
+}
+W.lnfw = take(D); W.lnfb = take(D);
+
+// ---------- tokenizer ----------
+const vocabMap = new Map(TOK.vocab.map((t, i) => [t, i]));
+const ranks = new Map(TOK.merges.map((m, i) => [m, i]));
+const bpeCache = new Map();
+function bpe(word) {
+  if (bpeCache.has(word)) return bpeCache.get(word);
+  let parts = Array.from(word);
+  while (parts.length > 1) {
+    let best = -1, bi = -1;
+    for (let i = 0; i < parts.length - 1; i++) {
+      const r = ranks.get(parts[i] + " " + parts[i + 1]);
+      if (r !== undefined && (best < 0 || r < best)) { best = r; bi = i; }
+    }
+    if (bi < 0) break;
+    parts.splice(bi, 2, parts[bi] + parts[bi + 1]);
+  }
+  bpeCache.set(word, parts);
+  return parts;
+}
+function encode(text) {
+  const t = text.replace(/\s*\n\s*/g, " ¶ ");
+  const ids = [];
+  for (const w of t.split(/\s+/).filter(Boolean))
+    for (const p of bpe("▁" + w)) ids.push(vocabMap.has(p) ? vocabMap.get(p) : 0);
+  return ids;
+}
+function decodeTok(id) { return TOK.vocab[id].replace(/▁/g, " "); }
+function cleanText(s) { return s.replace(/ ?¶ ?/g, "\n"); }
+
+// ---------- model (KV-cached) ----------
+const kc = [], vc = [];
+function resetCache() {
+  kc.length = 0; vc.length = 0;
+  for (let l = 0; l < L; l++) { kc.push(new Float32Array(CTX * D)); vc.push(new Float32Array(CTX * D)); }
+}
+function layerNorm(x, w, b, out) {
+  let m = 0; for (let i = 0; i < D; i++) m += x[i]; m /= D;
+  let v = 0; for (let i = 0; i < D; i++) { const t = x[i] - m; v += t * t; } v /= D;
+  const inv = 1 / Math.sqrt(v + 1e-5);
+  for (let i = 0; i < D; i++) out[i] = (x[i] - m) * inv * w[i] + b[i];
+}
+function linear(x, w, b, nOut, nIn, out) {
+  for (let o = 0; o < nOut; o++) {
+    let s = b ? b[o] : 0; const r = o * nIn;
+    for (let i = 0; i < nIn; i++) s += w[r + i] * x[i];
+    out[o] = s;
+  }
+}
+function erf(x) {
+  const s = x < 0 ? -1 : 1; x = Math.abs(x);
+  const t = 1 / (1 + 0.3275911 * x);
+  const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x);
+  return s * y;
+}
+const gelu = x => 0.5 * x * (1 + erf(x * 0.7071067811865476));
+const bx = new Float32Array(D), bh = new Float32Array(D), bqkv = new Float32Array(3 * D),
+      bat = new Float32Array(D), bpr = new Float32Array(D), bfc = new Float32Array(4 * D),
+      bo = new Float32Array(D), scores = new Float32Array(CTX);
+function forward(id, t) {
+  for (let i = 0; i < D; i++) bx[i] = W.tok[id * D + i] + W.pos[t * D + i];
+  for (let l = 0; l < L; l++) {
+    const B = W.blocks[l];
+    layerNorm(bx, B.ln1w, B.ln1b, bh);
+    linear(bh, B.qkvw, B.qkvb, 3 * D, D, bqkv);
+    kc[l].set(bqkv.subarray(D, 2 * D), t * D);
+    vc[l].set(bqkv.subarray(2 * D, 3 * D), t * D);
+    for (let h = 0; h < H; h++) {
+      const qo = h * HD; let mx = -1e30;
+      for (let j = 0; j <= t; j++) {
+        let s = 0; const ko = j * D + qo;
+        for (let i = 0; i < HD; i++) s += bqkv[qo + i] * kc[l][ko + i];
+        s /= Math.sqrt(HD); scores[j] = s; if (s > mx) mx = s;
+      }
+      let z = 0; for (let j = 0; j <= t; j++) { scores[j] = Math.exp(scores[j] - mx); z += scores[j]; }
+      for (let i = 0; i < HD; i++) {
+        let s = 0; for (let j = 0; j <= t; j++) s += scores[j] * vc[l][j * D + qo + i];
+        bat[qo + i] = s / z;
+      }
+    }
+    linear(bat, B.projw, B.projb, D, D, bpr);
+    for (let i = 0; i < D; i++) bx[i] += bpr[i];
+    layerNorm(bx, B.ln2w, B.ln2b, bh);
+    linear(bh, B.fcw, B.fcb, 4 * D, D, bfc);
+    for (let i = 0; i < 4 * D; i++) bfc[i] = gelu(bfc[i]);
+    linear(bfc, B.outw, B.outb, D, 4 * D, bo);
+    for (let i = 0; i < D; i++) bx[i] += bo[i];
+  }
+  layerNorm(bx, W.lnfw, W.lnfb, bh);
+  const logits = new Float32Array(V);
+  linear(bh, W.tok, null, V, D, logits);
+  return logits;
+}
+
+// ---------- sampling ----------
+function sample(logits, temp, topk, topp) {
+  if (temp <= 0) { let b = 0; for (let i = 1; i < V; i++) if (logits[i] > logits[b]) b = i; return b; }
+  let idx = Array.from({ length: V }, (_, i) => i).sort((a, b) => logits[b] - logits[a]).slice(0, Math.min(topk, V));
+  const mx = logits[idx[0]];
+  let p = idx.map(i => Math.exp((logits[i] - mx) / temp));
+  let z = p.reduce((a, b) => a + b, 0); p = p.map(x => x / z);
+  let cum = 0, cut = p.length;
+  for (let i = 0; i < p.length; i++) { cum += p[i]; if (cum >= topp) { cut = i + 1; break; } }
+  idx = idx.slice(0, cut); p = p.slice(0, cut);
+  z = p.reduce((a, b) => a + b, 0);
+  let r = Math.random() * z;
+  for (let i = 0; i < p.length; i++) { r -= p[i]; if (r <= 0) return idx[i]; }
+  return idx[idx.length - 1];
+}
+
+// ---------- UI ----------
+const $ = id => document.getElementById(id);
+const bind = (id, out, fmt) => { const f = () => $(out).textContent = fmt($(id).value); $(id).oninput = f; f(); };
+bind("temp", "tv", v => (+v).toFixed(2)); bind("topk", "kv", v => v);
+bind("topp", "pv", v => (+v).toFixed(2)); bind("maxn", "mv", v => v);
+["Once upon a time, there was a little girl named Lily.",
+ "One day, a big dog found a shiny red ball in the park.",
+ "Tom and his mom went to the store to buy some apples.",
+ "The sun was bright and the birds were singing. Mia",
+ "A little robot wanted to make a friend."].forEach(t => {
+  const c = document.createElement("span"); c.className = "chip"; c.textContent = t.length > 38 ? t.slice(0, 36) + "…" : t;
+  c.onclick = () => { $("prompt").value = t; }; $("chips").appendChild(c);
+});
+$("info").textContent = `Model: ${CFG.params} parameters, ${L} layers, width ${D}, ${H} heads, context ${CTX} tokens, 2,048-token BPE vocabulary. Validation loss ${CFG.val} (perplexity ${CFG.ppl}) after ${CFG.step} training steps.`;
+
+let stopFlag = false, running = false;
+$("stop").onclick = () => { stopFlag = true; };
+$("go").onclick = async () => {
+  if (running) return;
+  running = true; stopFlag = false; $("go").disabled = true; $("stop").disabled = false;
+  const prompt = $("prompt").value.trim();
+  let ids = encode(prompt);
+  if (!ids.length) ids = [1];
+  const maxNew = +$("maxn").value, temp = +$("temp").value, topk = +$("topk").value, topp = +$("topp").value;
+  if (ids.length > CTX - 10) ids = ids.slice(-(CTX - 10));
+  resetCache();
+  const out = $("out"); out.innerHTML = "";
+  const ps = document.createElement("span"); ps.className = "p"; ps.textContent = prompt;
+  const gs = document.createElement("span"); gs.className = "g";
+  const cur = document.createElement("span"); cur.className = "cursor";
+  out.append(ps, gs, cur);
+  let logits, t = 0; const t0 = performance.now();
+  for (const id of ids) { logits = forward(id, t++); }
+  let genText = "", n = 0;
+  while (n < maxNew && t < CTX && !stopFlag) {
+    const id = sample(logits, temp, topk, topp);
+    if (id === 1) break;                       // <eos>
+    genText += decodeTok(id); n++;
+    gs.textContent = cleanText(genText);
+    logits = forward(id, t++);
+    const el = (performance.now() - t0) / 1000;
+    $("stats").innerHTML = `<span>Prompt <b>${ids.length}</b> tokens</span><span>Generated <b>${n}</b> tokens</span><span><b>${(n / el).toFixed(1)}</b> tokens/s</span>`;
+    if (n % 2 === 0) await new Promise(r => setTimeout(r));
+  }
+  cur.remove(); running = false; $("go").disabled = false; $("stop").disabled = true;
+};
+</script>
+</body>
+</html>

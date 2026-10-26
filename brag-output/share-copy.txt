@@ -1,0 +1,1 @@
+I trained a 5.3M-parameter GPT from scratch on a laptop CPU in 3.7 hours. It writes children's stories in your browser, offline, in one 14 MB HTML file. It also repeats itself, and I'm leaving that in.

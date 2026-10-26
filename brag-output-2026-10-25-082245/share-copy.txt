@@ -1,0 +1,1 @@
+MiniGPT Storyteller: a 5.31M-parameter language model, trained from scratch to write children's stories. It runs entirely in your browser (one 14 MB file). Validation perplexity 9.4. It repeats itself and only knows simple stories, and the three samples in the video are picked from five each.

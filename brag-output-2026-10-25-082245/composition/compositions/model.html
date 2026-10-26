@@ -1,0 +1,89 @@
+<template>
+  <style>
+    
+    #root { position: absolute; inset: 0; font-family: 'Inter', system-ui, sans-serif; color: #17171c; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .serif { font-family: 'EB Garamond', serif; }
+    .typ { display: inline-block; clip-path: inset(-12px 100% -12px -12px); }
+
+    #m-wrap { position: absolute; inset: 0; }
+    #m-lab { position: absolute; left: 140px; top: 120px; font-size: 28px; letter-spacing: .08em; text-transform: uppercase; color: #5f5f6b; }
+    #m-numbox { position: absolute; left: 132px; top: 150px; width: 780px; height: 280px; }
+    .cn { position: absolute; left: 0; top: 0; font-family: 'EB Garamond', serif; font-weight: 700; font-size: 250px; line-height: 270px; color: #1d3fcf; opacity: 0; white-space: nowrap; }
+    #m-par { position: absolute; left: 140px; top: 440px; font-size: 56px; line-height: 64px; opacity: 0; }
+    #m-rule { position: absolute; left: 140px; top: 590px; width: 740px; height: 2px; background: #d6d2c6; }
+    #m-plab { position: absolute; left: 140px; top: 620px; font-size: 28px; letter-spacing: .08em; text-transform: uppercase; color: #5f5f6b; opacity: 0; }
+    #m-purp { position: absolute; left: 140px; top: 672px; width: 740px; font-size: 46px; line-height: 62px; opacity: 0; text-wrap: balance; }
+    #m-tab { position: absolute; left: 980px; top: 130px; width: 800px; }
+    .row { display: flex; justify-content: space-between; align-items: baseline; height: 84px; border-bottom: 2px solid #d6d2c6; opacity: 0; }
+    .rk { font-size: 28px; color: #5f5f6b; } .rv { font-size: 34px; font-weight: 700; }
+    #m-fig { position: absolute; left: 980px; top: 520px; width: 800px; height: 300px; clip-path: inset(0 100% 0 0); }
+    #m-cap { position: absolute; left: 980px; top: 840px; font-size: 28px; color: #5f5f6b; opacity: 0; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="model" data-width="1920" data-height="1080">
+    <div id="m-wrap" class="clip" data-start="0" data-duration="5.47">
+      <div id="m-lab" class="mono">Model</div>
+      <div id="m-numbox" data-layout-ignore><span id="m-c0" class="cn">0.00M</span><span id="m-c1" class="cn">0.73M</span><span id="m-c2" class="cn">1.40M</span><span id="m-c3" class="cn">2.00M</span><span id="m-c4" class="cn">2.55M</span><span id="m-c5" class="cn">3.03M</span><span id="m-c6" class="cn">3.46M</span><span id="m-c7" class="cn">3.83M</span><span id="m-c8" class="cn">4.16M</span><span id="m-c9" class="cn">4.43M</span><span id="m-c10" class="cn">4.67M</span><span id="m-c11" class="cn">4.85M</span><span id="m-c12" class="cn">5.00M</span><span id="m-c13" class="cn">5.12M</span><span id="m-c14" class="cn">5.20M</span><span id="m-c15" class="cn">5.26M</span><span id="m-c16" class="cn">5.29M</span><span id="m-c17" class="cn">5.31M</span><span id="m-c18" class="cn">5.31M</span></div>
+      <div id="m-par">parameters</div>
+      <div id="m-rule"></div>
+      <div id="m-plab" class="mono">Purpose</div>
+      <div id="m-purp">Continue a story from its first sentence.</div>
+      <div id="m-tab"><div id="m-r0" class="row"><span class="rk mono">Layers &middot; width &middot; heads</span><span class="rv mono">6 &middot; 256 &middot; 8</span></div><div id="m-r1" class="row"><span class="rk mono">Context</span><span class="rv mono">192 tokens</span></div><div id="m-r2" class="row"><span class="rk mono">Vocabulary</span><span class="rv mono">2,048 (BPE)</span></div><div id="m-r3" class="row"><span class="rk mono">Training data</span><span class="rv mono">194k stories</span></div></div>
+      <div id="m-fig"><svg viewBox="0 0 800 300" width="800" height="300"><line x1="70" y1="270" x2="770" y2="270" stroke="#17171c" stroke-width="3"/><line x1="70" y1="30" x2="70" y2="270" stroke="#17171c" stroke-width="3"/><line x1="70" y1="155.0" x2="770" y2="155.0" stroke="#d6d2c6" stroke-width="2"/><line x1="70" y1="270.0" x2="770" y2="270.0" stroke="#d6d2c6" stroke-width="2"/><polyline points="132.5,56.8 195.0,124.7 257.5,153.9 320.0,181.1 382.5,194.9 445.0,208.9 507.5,220.5 570.0,226.7 632.5,232.6 695.0,241.0 757.5,243.4 770.0,242.3" fill="none" stroke="#1d3fcf" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><circle cx="132.5" cy="56.8" r="7" fill="#1d3fcf"/><circle cx="195.0" cy="124.7" r="7" fill="#1d3fcf"/><circle cx="257.5" cy="153.9" r="7" fill="#1d3fcf"/><circle cx="320.0" cy="181.1" r="7" fill="#1d3fcf"/><circle cx="382.5" cy="194.9" r="7" fill="#1d3fcf"/><circle cx="445.0" cy="208.9" r="7" fill="#1d3fcf"/><circle cx="507.5" cy="220.5" r="7" fill="#1d3fcf"/><circle cx="570.0" cy="226.7" r="7" fill="#1d3fcf"/><circle cx="632.5" cy="232.6" r="7" fill="#1d3fcf"/><circle cx="695.0" cy="241.0" r="7" fill="#1d3fcf"/><circle cx="757.5" cy="243.4" r="7" fill="#1d3fcf"/><circle cx="770.0" cy="242.3" r="7" fill="#1d3fcf"/><text x="148" y="61" font-family="JetBrains Mono" font-size="28" fill="#1d3fcf">3.85</text><text x="770" y="224" text-anchor="end" font-family="JetBrains Mono" font-size="28" font-weight="700" fill="#1d3fcf">2.24</text></svg></div>
+      <div id="m-cap" class="mono">Figure 1. Validation loss: 3.85 &rarr; 2.24</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#m-wrap", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0);
+    tl.set("#m-c0", { opacity: 1 }, 0.250);
+    tl.set("#m-c0", { opacity: 0 }, 0.322);
+    tl.set("#m-c1", { opacity: 1 }, 0.322);
+    tl.set("#m-c1", { opacity: 0 }, 0.394);
+    tl.set("#m-c2", { opacity: 1 }, 0.394);
+    tl.set("#m-c2", { opacity: 0 }, 0.467);
+    tl.set("#m-c3", { opacity: 1 }, 0.467);
+    tl.set("#m-c3", { opacity: 0 }, 0.539);
+    tl.set("#m-c4", { opacity: 1 }, 0.539);
+    tl.set("#m-c4", { opacity: 0 }, 0.611);
+    tl.set("#m-c5", { opacity: 1 }, 0.611);
+    tl.set("#m-c5", { opacity: 0 }, 0.683);
+    tl.set("#m-c6", { opacity: 1 }, 0.683);
+    tl.set("#m-c6", { opacity: 0 }, 0.756);
+    tl.set("#m-c7", { opacity: 1 }, 0.756);
+    tl.set("#m-c7", { opacity: 0 }, 0.828);
+    tl.set("#m-c8", { opacity: 1 }, 0.828);
+    tl.set("#m-c8", { opacity: 0 }, 0.900);
+    tl.set("#m-c9", { opacity: 1 }, 0.900);
+    tl.set("#m-c9", { opacity: 0 }, 0.972);
+    tl.set("#m-c10", { opacity: 1 }, 0.972);
+    tl.set("#m-c10", { opacity: 0 }, 1.044);
+    tl.set("#m-c11", { opacity: 1 }, 1.044);
+    tl.set("#m-c11", { opacity: 0 }, 1.117);
+    tl.set("#m-c12", { opacity: 1 }, 1.117);
+    tl.set("#m-c12", { opacity: 0 }, 1.189);
+    tl.set("#m-c13", { opacity: 1 }, 1.189);
+    tl.set("#m-c13", { opacity: 0 }, 1.261);
+    tl.set("#m-c14", { opacity: 1 }, 1.261);
+    tl.set("#m-c14", { opacity: 0 }, 1.333);
+    tl.set("#m-c15", { opacity: 1 }, 1.333);
+    tl.set("#m-c15", { opacity: 0 }, 1.406);
+    tl.set("#m-c16", { opacity: 1 }, 1.406);
+    tl.set("#m-c16", { opacity: 0 }, 1.478);
+    tl.set("#m-c17", { opacity: 1 }, 1.478);
+    tl.set("#m-c17", { opacity: 0 }, 1.550);
+    tl.set("#m-c18", { opacity: 1 }, 1.550);
+    tl.fromTo("#m-par", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.45);
+    tl.fromTo("#m-plab", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.9);
+    tl.fromTo("#m-purp", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 2.0);
+    // beat-grid: rows at abs 4.39, 4.93, 5.47, 6.01
+    tl.fromTo("#m-r0", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 1.12);
+    tl.fromTo("#m-r1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 1.66);
+    tl.fromTo("#m-r2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 2.20);
+    tl.fromTo("#m-r3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 2.74);
+    tl.fromTo("#m-fig", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 1.4, ease: "power2.inOut" }, 3.0);
+    tl.fromTo("#m-cap", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.9);
+    tl.to("#m-wrap", { opacity: 0, duration: 0.25, ease: "power2.in" }, 5.22);
+    window.__timelines["model"] = tl;
+  </script>
+</template>

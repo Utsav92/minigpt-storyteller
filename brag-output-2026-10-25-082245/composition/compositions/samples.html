@@ -1,0 +1,304 @@
+<template>
+  <style>
+    
+    #root { position: absolute; inset: 0; font-family: 'Inter', system-ui, sans-serif; color: #17171c; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .serif { font-family: 'EB Garamond', serif; }
+    .typ { display: inline-block; clip-path: inset(-12px 100% -12px -12px); }
+
+    .panel { position: absolute; inset: 0; opacity: 0; }
+    .tag { position: absolute; left: 200px; top: 110px; display: flex; align-items: center; gap: 14px; font-size: 28px; font-weight: 700; color: #1d3fcf; border: 3px solid #1d3fcf; border-radius: 999px; padding: 6px 24px; letter-spacing: .04em; }
+    .dot { display: inline-block; width: 16px; height: 16px; border-radius: 8px; background: #1d3fcf; opacity: .7; }
+    .meta { position: absolute; right: 200px; top: 120px; font-size: 28px; color: #5f5f6b; white-space: nowrap; }
+    .lab { position: absolute; left: 200px; font-size: 28px; letter-spacing: .08em; text-transform: uppercase; color: #5f5f6b; }
+    .prompt { position: absolute; left: 200px; top: 290px; font-size: 38px; line-height: 56px; white-space: nowrap; }
+    .hr { position: absolute; left: 200px; width: 1520px; height: 2px; background: #d6d2c6; }
+    .ans { position: absolute; left: 200px; top: 500px; width: 1520px; font-size: 64px; line-height: 84px; color: #1d3fcf; }
+    .w { opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="samples" data-width="1920" data-height="1080">
+    <div id="smp-wrap" class="clip" data-start="0" data-duration="13.10" style="position:absolute;inset:0">
+      
+      <div id="s0" class="panel clip" data-start="0.00" data-duration="4.37">
+        <div class="tag mono"><span id="s0-dot" class="dot"></span>SAMPLE 1 / 3</div>
+        <div class="meta mono">temperature 0.7 &middot; top-k 40 &middot; one of 5 samples</div>
+        <div class="lab mono" style="top:230px">Prompt</div>
+        <div class="prompt mono"><span id="s0-p" class="typ">Once upon a time, there was a little bear named Tom.</span></div>
+        <div class="hr" style="top:410px"></div>
+        <div class="lab mono" id="s0-ol" style="top:440px">Model output</div>
+        <div class="ans serif"><span id="s0-w0" class="w">Tom</span> <span id="s0-w1" class="w">was</span> <span id="s0-w2" class="w">a</span> <span id="s0-w3" class="w">very</span> <span id="s0-w4" class="w">curious</span> <span id="s0-w5" class="w">boy</span> <span id="s0-w6" class="w">who</span> <span id="s0-w7" class="w">liked</span> <span id="s0-w8" class="w">to</span> <span id="s0-w9" class="w">explore</span> <span id="s0-w10" class="w">new</span> <span id="s0-w11" class="w">places</span> <span id="s0-w12" class="w">in</span> <span id="s0-w13" class="w">the</span> <span id="s0-w14" class="w">woods.</span> <span id="s0-w15" class="w">One</span> <span id="s0-w16" class="w">day,</span> <span id="s0-w17" class="w">Tom</span> <span id="s0-w18" class="w">found</span> <span id="s0-w19" class="w">a</span> <span id="s0-w20" class="w">big</span> <span id="s0-w21" class="w">tree.</span> <span id="s0-w22" class="w">He</span> <span id="s0-w23" class="w">knew</span> <span id="s0-w24" class="w">it</span> <span id="s0-w25" class="w">was</span> <span id="s0-w26" class="w">a</span> <span id="s0-w27" class="w">good</span> <span id="s0-w28" class="w">spot</span> <span id="s0-w29" class="w">to</span> <span id="s0-w30" class="w">watch.</span></div>
+      </div>
+      <div id="s1" class="panel clip" data-start="4.37" data-duration="4.37">
+        <div class="tag mono"><span id="s1-dot" class="dot"></span>SAMPLE 2 / 3</div>
+        <div class="meta mono">temperature 0.7 &middot; top-k 40 &middot; one of 5 samples</div>
+        <div class="lab mono" style="top:230px">Prompt</div>
+        <div class="prompt mono"><span id="s1-p" class="typ">Lily and her mom went to the garden to plant flowers.</span></div>
+        <div class="hr" style="top:410px"></div>
+        <div class="lab mono" id="s1-ol" style="top:440px">Model output</div>
+        <div class="ans serif"><span id="s1-w0" class="w">Lily</span> <span id="s1-w1" class="w">saw</span> <span id="s1-w2" class="w">a</span> <span id="s1-w3" class="w">big</span> <span id="s1-w4" class="w">pile</span> <span id="s1-w5" class="w">of</span> <span id="s1-w6" class="w">flowers</span> <span id="s1-w7" class="w">and</span> <span id="s1-w8" class="w">squirrels.</span> <span id="s1-w9" class="w">She</span> <span id="s1-w10" class="w">wanted</span> <span id="s1-w11" class="w">to</span> <span id="s1-w12" class="w">pick</span> <span id="s1-w13" class="w">them,</span> <span id="s1-w14" class="w">but</span> <span id="s1-w15" class="w">her</span> <span id="s1-w16" class="w">mom</span> <span id="s1-w17" class="w">said</span> <span id="s1-w18" class="w">no.</span> <span id="s1-w19" class="w">Lily</span> <span id="s1-w20" class="w">was</span> <span id="s1-w21" class="w">sad</span> <span id="s1-w22" class="w">and</span> <span id="s1-w23" class="w">hurt.</span></div>
+      </div>
+      <div id="s2" class="panel clip" data-start="8.74" data-duration="4.37">
+        <div class="tag mono"><span id="s2-dot" class="dot"></span>SAMPLE 3 / 3</div>
+        <div class="meta mono">temperature 0.7 &middot; top-k 40 &middot; one of 5 samples</div>
+        <div class="lab mono" style="top:230px">Prompt</div>
+        <div class="prompt mono"><span id="s2-p" class="typ">One day, a girl named Mia found a magic door in the forest.</span></div>
+        <div class="hr" style="top:410px"></div>
+        <div class="lab mono" id="s2-ol" style="top:440px">Model output</div>
+        <div class="ans serif"><span id="s2-w0" class="w">She</span> <span id="s2-w1" class="w">was</span> <span id="s2-w2" class="w">so</span> <span id="s2-w3" class="w">excited</span> <span id="s2-w4" class="w">and</span> <span id="s2-w5" class="w">wanted</span> <span id="s2-w6" class="w">to</span> <span id="s2-w7" class="w">open</span> <span id="s2-w8" class="w">it.</span> <span id="s2-w9" class="w">But</span> <span id="s2-w10" class="w">she</span> <span id="s2-w11" class="w">couldn&#x27;t</span> <span id="s2-w12" class="w">find</span> <span id="s2-w13" class="w">it</span> <span id="s2-w14" class="w">anywhere.</span> <span id="s2-w15" class="w">Mia</span> <span id="s2-w16" class="w">asked</span> <span id="s2-w17" class="w">her</span> <span id="s2-w18" class="w">mom</span> <span id="s2-w19" class="w">if</span> <span id="s2-w20" class="w">she</span> <span id="s2-w21" class="w">could.</span> <span id="s2-w22" class="w">Her</span> <span id="s2-w23" class="w">mom</span> <span id="s2-w24" class="w">said</span> <span id="s2-w25" class="w">no.</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#s0", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.00); // beat-locked: abs 8.74s
+    tl.fromTo("#s0-p", { clipPath: "inset(-12px 100% -12px -12px)" }, { clipPath: "inset(-12px -12px -12px -12px)", duration: 0.65, ease: "steps(52)" }, 0.200);
+    tl.fromTo("#s0-ol", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.90);
+    tl.fromTo("#s0-w0", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.050);
+    tl.fromTo("#s0-w1", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.124);
+    tl.fromTo("#s0-w2", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.198);
+    tl.fromTo("#s0-w3", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.273);
+    tl.fromTo("#s0-w4", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.347);
+    tl.fromTo("#s0-w5", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.421);
+    tl.fromTo("#s0-w6", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.495);
+    tl.fromTo("#s0-w7", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.569);
+    tl.fromTo("#s0-w8", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.644);
+    tl.fromTo("#s0-w9", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.718);
+    tl.fromTo("#s0-w10", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.792);
+    tl.fromTo("#s0-w11", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.866);
+    tl.fromTo("#s0-w12", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 1.940);
+    tl.fromTo("#s0-w13", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.015);
+    tl.fromTo("#s0-w14", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.089);
+    tl.fromTo("#s0-w15", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.163);
+    tl.fromTo("#s0-w16", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.237);
+    tl.fromTo("#s0-w17", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.311);
+    tl.fromTo("#s0-w18", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.385);
+    tl.fromTo("#s0-w19", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.460);
+    tl.fromTo("#s0-w20", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.534);
+    tl.fromTo("#s0-w21", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.608);
+    tl.fromTo("#s0-w22", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.682);
+    tl.fromTo("#s0-w23", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.756);
+    tl.fromTo("#s0-w24", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.831);
+    tl.fromTo("#s0-w25", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.905);
+    tl.fromTo("#s0-w26", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 2.979);
+    tl.fromTo("#s0-w27", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 3.053);
+    tl.fromTo("#s0-w28", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 3.127);
+    tl.fromTo("#s0-w29", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 3.202);
+    tl.fromTo("#s0-w30", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 3.276);
+    tl.to("#s0", { opacity: 0, duration: 0.2, ease: "power2.in" }, 4.15);
+    tl.to("#s0-dot", { opacity: 0.861, duration: 0.0833, ease: "none" }, 0.0000);
+    tl.to("#s0-dot", { opacity: 0.93, duration: 0.0833, ease: "none" }, 0.0833);
+    tl.to("#s0-dot", { opacity: 0.916, duration: 0.0833, ease: "none" }, 0.1667);
+    tl.to("#s0-dot", { opacity: 0.803, duration: 0.0833, ease: "none" }, 0.2500);
+    tl.to("#s0-dot", { opacity: 0.788, duration: 0.0833, ease: "none" }, 0.3333);
+    tl.to("#s0-dot", { opacity: 0.762, duration: 0.0833, ease: "none" }, 0.4167);
+    tl.to("#s0-dot", { opacity: 0.869, duration: 0.0833, ease: "none" }, 0.5000);
+    tl.to("#s0-dot", { opacity: 0.908, duration: 0.0833, ease: "none" }, 0.5833);
+    tl.to("#s0-dot", { opacity: 0.888, duration: 0.0833, ease: "none" }, 0.6667);
+    tl.to("#s0-dot", { opacity: 0.776, duration: 0.0833, ease: "none" }, 0.7500);
+    tl.to("#s0-dot", { opacity: 0.712, duration: 0.0833, ease: "none" }, 0.8333);
+    tl.to("#s0-dot", { opacity: 0.746, duration: 0.0833, ease: "none" }, 0.9167);
+    tl.to("#s0-dot", { opacity: 0.787, duration: 0.0833, ease: "none" }, 1.0000);
+    tl.to("#s0-dot", { opacity: 0.922, duration: 0.0833, ease: "none" }, 1.0833);
+    tl.to("#s0-dot", { opacity: 0.924, duration: 0.0833, ease: "none" }, 1.1667);
+    tl.to("#s0-dot", { opacity: 0.916, duration: 0.0833, ease: "none" }, 1.2500);
+    tl.to("#s0-dot", { opacity: 0.79, duration: 0.0833, ease: "none" }, 1.3333);
+    tl.to("#s0-dot", { opacity: 0.776, duration: 0.0833, ease: "none" }, 1.4167);
+    tl.to("#s0-dot", { opacity: 0.762, duration: 0.0833, ease: "none" }, 1.5000);
+    tl.to("#s0-dot", { opacity: 0.867, duration: 0.0833, ease: "none" }, 1.5833);
+    tl.to("#s0-dot", { opacity: 0.925, duration: 0.0833, ease: "none" }, 1.6667);
+    tl.to("#s0-dot", { opacity: 0.907, duration: 0.0833, ease: "none" }, 1.7500);
+    tl.to("#s0-dot", { opacity: 0.804, duration: 0.0833, ease: "none" }, 1.8333);
+    tl.to("#s0-dot", { opacity: 0.779, duration: 0.0833, ease: "none" }, 1.9167);
+    tl.to("#s0-dot", { opacity: 0.809, duration: 0.0833, ease: "none" }, 2.0000);
+    tl.to("#s0-dot", { opacity: 0.844, duration: 0.0833, ease: "none" }, 2.0833);
+    tl.to("#s0-dot", { opacity: 0.946, duration: 0.0833, ease: "none" }, 2.1667);
+    tl.to("#s0-dot", { opacity: 0.932, duration: 0.0833, ease: "none" }, 2.2500);
+    tl.to("#s0-dot", { opacity: 0.919, duration: 0.0833, ease: "none" }, 2.3333);
+    tl.to("#s0-dot", { opacity: 0.795, duration: 0.0833, ease: "none" }, 2.4167);
+    tl.to("#s0-dot", { opacity: 0.784, duration: 0.0833, ease: "none" }, 2.5000);
+    tl.to("#s0-dot", { opacity: 0.774, duration: 0.0833, ease: "none" }, 2.5833);
+    tl.to("#s0-dot", { opacity: 0.836, duration: 0.0833, ease: "none" }, 2.6667);
+    tl.to("#s0-dot", { opacity: 0.911, duration: 0.0833, ease: "none" }, 2.7500);
+    tl.to("#s0-dot", { opacity: 0.877, duration: 0.0833, ease: "none" }, 2.8333);
+    tl.to("#s0-dot", { opacity: 0.796, duration: 0.0833, ease: "none" }, 2.9167);
+    tl.to("#s0-dot", { opacity: 0.768, duration: 0.0833, ease: "none" }, 3.0000);
+    tl.to("#s0-dot", { opacity: 0.826, duration: 0.0833, ease: "none" }, 3.0833);
+    tl.to("#s0-dot", { opacity: 0.852, duration: 0.0833, ease: "none" }, 3.1667);
+    tl.to("#s0-dot", { opacity: 0.93, duration: 0.0833, ease: "none" }, 3.2500);
+    tl.to("#s0-dot", { opacity: 0.927, duration: 0.0833, ease: "none" }, 3.3333);
+    tl.to("#s0-dot", { opacity: 0.927, duration: 0.0833, ease: "none" }, 3.4167);
+    tl.to("#s0-dot", { opacity: 0.798, duration: 0.0833, ease: "none" }, 3.5000);
+    tl.to("#s0-dot", { opacity: 0.768, duration: 0.0833, ease: "none" }, 3.5833);
+    tl.to("#s0-dot", { opacity: 0.771, duration: 0.0833, ease: "none" }, 3.6667);
+    tl.to("#s0-dot", { opacity: 0.85, duration: 0.0833, ease: "none" }, 3.7500);
+    tl.to("#s0-dot", { opacity: 0.937, duration: 0.0833, ease: "none" }, 3.8333);
+    tl.to("#s0-dot", { opacity: 0.922, duration: 0.0833, ease: "none" }, 3.9167);
+    tl.to("#s0-dot", { opacity: 0.835, duration: 0.0833, ease: "none" }, 4.0000);
+    tl.to("#s0-dot", { opacity: 0.771, duration: 0.0833, ease: "none" }, 4.0833);
+    tl.to("#s0-dot", { opacity: 0.765, duration: 0.0833, ease: "none" }, 4.1667);
+    tl.to("#s0-dot", { opacity: 0.77, duration: 0.0833, ease: "none" }, 4.2500);
+    tl.fromTo("#s1", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 4.37); // beat-locked: abs 13.11s
+    tl.fromTo("#s1-p", { clipPath: "inset(-12px 100% -12px -12px)" }, { clipPath: "inset(-12px -12px -12px -12px)", duration: 0.65, ease: "steps(53)" }, 4.570);
+    tl.fromTo("#s1-ol", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 5.27);
+    tl.fromTo("#s1-w0", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 5.420);
+    tl.fromTo("#s1-w1", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 5.516);
+    tl.fromTo("#s1-w2", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 5.612);
+    tl.fromTo("#s1-w3", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 5.707);
+    tl.fromTo("#s1-w4", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 5.803);
+    tl.fromTo("#s1-w5", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 5.899);
+    tl.fromTo("#s1-w6", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 5.995);
+    tl.fromTo("#s1-w7", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.091);
+    tl.fromTo("#s1-w8", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.187);
+    tl.fromTo("#s1-w9", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.282);
+    tl.fromTo("#s1-w10", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.378);
+    tl.fromTo("#s1-w11", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.474);
+    tl.fromTo("#s1-w12", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.570);
+    tl.fromTo("#s1-w13", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.666);
+    tl.fromTo("#s1-w14", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.762);
+    tl.fromTo("#s1-w15", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.857);
+    tl.fromTo("#s1-w16", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 6.953);
+    tl.fromTo("#s1-w17", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 7.049);
+    tl.fromTo("#s1-w18", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 7.145);
+    tl.fromTo("#s1-w19", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 7.241);
+    tl.fromTo("#s1-w20", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 7.337);
+    tl.fromTo("#s1-w21", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 7.432);
+    tl.fromTo("#s1-w22", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 7.528);
+    tl.fromTo("#s1-w23", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 7.624);
+    tl.to("#s1", { opacity: 0, duration: 0.2, ease: "power2.in" }, 8.52);
+    tl.to("#s1-dot", { opacity: 0.916, duration: 0.0833, ease: "none" }, 4.3700);
+    tl.to("#s1-dot", { opacity: 0.948, duration: 0.0833, ease: "none" }, 4.4533);
+    tl.to("#s1-dot", { opacity: 0.828, duration: 0.0833, ease: "none" }, 4.5367);
+    tl.to("#s1-dot", { opacity: 0.784, duration: 0.0833, ease: "none" }, 4.6200);
+    tl.to("#s1-dot", { opacity: 0.767, duration: 0.0833, ease: "none" }, 4.7033);
+    tl.to("#s1-dot", { opacity: 0.827, duration: 0.0833, ease: "none" }, 4.7867);
+    tl.to("#s1-dot", { opacity: 0.927, duration: 0.0833, ease: "none" }, 4.8700);
+    tl.to("#s1-dot", { opacity: 0.901, duration: 0.0833, ease: "none" }, 4.9533);
+    tl.to("#s1-dot", { opacity: 0.816, duration: 0.0833, ease: "none" }, 5.0367);
+    tl.to("#s1-dot", { opacity: 0.714, duration: 0.0833, ease: "none" }, 5.1200);
+    tl.to("#s1-dot", { opacity: 0.735, duration: 0.0833, ease: "none" }, 5.2033);
+    tl.to("#s1-dot", { opacity: 0.76, duration: 0.0833, ease: "none" }, 5.2867);
+    tl.to("#s1-dot", { opacity: 0.89, duration: 0.0833, ease: "none" }, 5.3700);
+    tl.to("#s1-dot", { opacity: 0.911, duration: 0.0833, ease: "none" }, 5.4533);
+    tl.to("#s1-dot", { opacity: 0.912, duration: 0.0833, ease: "none" }, 5.5367);
+    tl.to("#s1-dot", { opacity: 0.777, duration: 0.0833, ease: "none" }, 5.6200);
+    tl.to("#s1-dot", { opacity: 0.728, duration: 0.0833, ease: "none" }, 5.7033);
+    tl.to("#s1-dot", { opacity: 0.734, duration: 0.0833, ease: "none" }, 5.7867);
+    tl.to("#s1-dot", { opacity: 0.801, duration: 0.0833, ease: "none" }, 5.8700);
+    tl.to("#s1-dot", { opacity: 0.929, duration: 0.0833, ease: "none" }, 5.9533);
+    tl.to("#s1-dot", { opacity: 0.915, duration: 0.0833, ease: "none" }, 6.0367);
+    tl.to("#s1-dot", { opacity: 0.86, duration: 0.0833, ease: "none" }, 6.1200);
+    tl.to("#s1-dot", { opacity: 0.778, duration: 0.0833, ease: "none" }, 6.2033);
+    tl.to("#s1-dot", { opacity: 0.809, duration: 0.0833, ease: "none" }, 6.2867);
+    tl.to("#s1-dot", { opacity: 0.85, duration: 0.0833, ease: "none" }, 6.3700);
+    tl.to("#s1-dot", { opacity: 0.947, duration: 0.0833, ease: "none" }, 6.4533);
+    tl.to("#s1-dot", { opacity: 0.969, duration: 0.0833, ease: "none" }, 6.5367);
+    tl.to("#s1-dot", { opacity: 0.959, duration: 0.0833, ease: "none" }, 6.6200);
+    tl.to("#s1-dot", { opacity: 0.859, duration: 0.0833, ease: "none" }, 6.7033);
+    tl.to("#s1-dot", { opacity: 0.815, duration: 0.0833, ease: "none" }, 6.7867);
+    tl.to("#s1-dot", { opacity: 0.791, duration: 0.0833, ease: "none" }, 6.8700);
+    tl.to("#s1-dot", { opacity: 0.805, duration: 0.0833, ease: "none" }, 6.9533);
+    tl.to("#s1-dot", { opacity: 0.915, duration: 0.0833, ease: "none" }, 7.0367);
+    tl.to("#s1-dot", { opacity: 0.908, duration: 0.0833, ease: "none" }, 7.1200);
+    tl.to("#s1-dot", { opacity: 0.861, duration: 0.0833, ease: "none" }, 7.2033);
+    tl.to("#s1-dot", { opacity: 0.809, duration: 0.0833, ease: "none" }, 7.2867);
+    tl.to("#s1-dot", { opacity: 0.865, duration: 0.0833, ease: "none" }, 7.3700);
+    tl.to("#s1-dot", { opacity: 0.909, duration: 0.0833, ease: "none" }, 7.4533);
+    tl.to("#s1-dot", { opacity: 0.957, duration: 0.0833, ease: "none" }, 7.5367);
+    tl.to("#s1-dot", { opacity: 0.952, duration: 0.0833, ease: "none" }, 7.6200);
+    tl.to("#s1-dot", { opacity: 0.955, duration: 0.0833, ease: "none" }, 7.7033);
+    tl.to("#s1-dot", { opacity: 0.882, duration: 0.0833, ease: "none" }, 7.7867);
+    tl.to("#s1-dot", { opacity: 0.836, duration: 0.0833, ease: "none" }, 7.8700);
+    tl.to("#s1-dot", { opacity: 0.842, duration: 0.0833, ease: "none" }, 7.9533);
+    tl.to("#s1-dot", { opacity: 0.81, duration: 0.0833, ease: "none" }, 8.0367);
+    tl.to("#s1-dot", { opacity: 0.894, duration: 0.0833, ease: "none" }, 8.1200);
+    tl.to("#s1-dot", { opacity: 0.907, duration: 0.0833, ease: "none" }, 8.2033);
+    tl.to("#s1-dot", { opacity: 0.887, duration: 0.0833, ease: "none" }, 8.2867);
+    tl.to("#s1-dot", { opacity: 0.799, duration: 0.0833, ease: "none" }, 8.3700);
+    tl.to("#s1-dot", { opacity: 0.742, duration: 0.0833, ease: "none" }, 8.4533);
+    tl.to("#s1-dot", { opacity: 0.741, duration: 0.0833, ease: "none" }, 8.5367);
+    tl.to("#s1-dot", { opacity: 0.837, duration: 0.0833, ease: "none" }, 8.6200);
+    tl.fromTo("#s2", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 8.74); // beat-locked: abs 17.48s
+    tl.fromTo("#s2-p", { clipPath: "inset(-12px 100% -12px -12px)" }, { clipPath: "inset(-12px -12px -12px -12px)", duration: 0.65, ease: "steps(59)" }, 8.940);
+    tl.fromTo("#s2-ol", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 9.64);
+    tl.fromTo("#s2-w0", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 9.790);
+    tl.fromTo("#s2-w1", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 9.878);
+    tl.fromTo("#s2-w2", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 9.967);
+    tl.fromTo("#s2-w3", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.055);
+    tl.fromTo("#s2-w4", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.144);
+    tl.fromTo("#s2-w5", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.232);
+    tl.fromTo("#s2-w6", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.321);
+    tl.fromTo("#s2-w7", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.409);
+    tl.fromTo("#s2-w8", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.498);
+    tl.fromTo("#s2-w9", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.586);
+    tl.fromTo("#s2-w10", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.675);
+    tl.fromTo("#s2-w11", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.763);
+    tl.fromTo("#s2-w12", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.852);
+    tl.fromTo("#s2-w13", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 10.940);
+    tl.fromTo("#s2-w14", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.028);
+    tl.fromTo("#s2-w15", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.117);
+    tl.fromTo("#s2-w16", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.205);
+    tl.fromTo("#s2-w17", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.294);
+    tl.fromTo("#s2-w18", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.382);
+    tl.fromTo("#s2-w19", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.471);
+    tl.fromTo("#s2-w20", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.559);
+    tl.fromTo("#s2-w21", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.648);
+    tl.fromTo("#s2-w22", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.736);
+    tl.fromTo("#s2-w23", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.825);
+    tl.fromTo("#s2-w24", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 11.913);
+    tl.fromTo("#s2-w25", { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, 12.002);
+    tl.to("#s2", { opacity: 0, duration: 0.2, ease: "power2.in" }, 12.89);
+    tl.to("#s2-dot", { opacity: 0.971, duration: 0.0833, ease: "none" }, 8.7400);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 8.8233);
+    tl.to("#s2-dot", { opacity: 0.99, duration: 0.0833, ease: "none" }, 8.9067);
+    tl.to("#s2-dot", { opacity: 0.816, duration: 0.0833, ease: "none" }, 8.9900);
+    tl.to("#s2-dot", { opacity: 0.691, duration: 0.0833, ease: "none" }, 9.0733);
+    tl.to("#s2-dot", { opacity: 0.648, duration: 0.0833, ease: "none" }, 9.1567);
+    tl.to("#s2-dot", { opacity: 0.848, duration: 0.0833, ease: "none" }, 9.2400);
+    tl.to("#s2-dot", { opacity: 0.883, duration: 0.0833, ease: "none" }, 9.3233);
+    tl.to("#s2-dot", { opacity: 0.887, duration: 0.0833, ease: "none" }, 9.4067);
+    tl.to("#s2-dot", { opacity: 0.687, duration: 0.0833, ease: "none" }, 9.4900);
+    tl.to("#s2-dot", { opacity: 0.614, duration: 0.0833, ease: "none" }, 9.5733);
+    tl.to("#s2-dot", { opacity: 0.679, duration: 0.0833, ease: "none" }, 9.6567);
+    tl.to("#s2-dot", { opacity: 0.808, duration: 0.0833, ease: "none" }, 9.7400);
+    tl.to("#s2-dot", { opacity: 0.963, duration: 0.0833, ease: "none" }, 9.8233);
+    tl.to("#s2-dot", { opacity: 0.918, duration: 0.0833, ease: "none" }, 9.9067);
+    tl.to("#s2-dot", { opacity: 0.821, duration: 0.0833, ease: "none" }, 9.9900);
+    tl.to("#s2-dot", { opacity: 0.783, duration: 0.0833, ease: "none" }, 10.0733);
+    tl.to("#s2-dot", { opacity: 0.85, duration: 0.0833, ease: "none" }, 10.1567);
+    tl.to("#s2-dot", { opacity: 0.911, duration: 0.0833, ease: "none" }, 10.2400);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 10.3233);
+    tl.to("#s2-dot", { opacity: 0.973, duration: 0.0833, ease: "none" }, 10.4067);
+    tl.to("#s2-dot", { opacity: 0.937, duration: 0.0833, ease: "none" }, 10.4900);
+    tl.to("#s2-dot", { opacity: 0.836, duration: 0.0833, ease: "none" }, 10.5733);
+    tl.to("#s2-dot", { opacity: 0.91, duration: 0.0833, ease: "none" }, 10.6567);
+    tl.to("#s2-dot", { opacity: 0.965, duration: 0.0833, ease: "none" }, 10.7400);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 10.8233);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 10.9067);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 10.9900);
+    tl.to("#s2-dot", { opacity: 0.965, duration: 0.0833, ease: "none" }, 11.0733);
+    tl.to("#s2-dot", { opacity: 0.863, duration: 0.0833, ease: "none" }, 11.1567);
+    tl.to("#s2-dot", { opacity: 0.792, duration: 0.0833, ease: "none" }, 11.2400);
+    tl.to("#s2-dot", { opacity: 0.695, duration: 0.0833, ease: "none" }, 11.3233);
+    tl.to("#s2-dot", { opacity: 0.859, duration: 0.0833, ease: "none" }, 11.4067);
+    tl.to("#s2-dot", { opacity: 0.942, duration: 0.0833, ease: "none" }, 11.4900);
+    tl.to("#s2-dot", { opacity: 0.957, duration: 0.0833, ease: "none" }, 11.5733);
+    tl.to("#s2-dot", { opacity: 0.815, duration: 0.0833, ease: "none" }, 11.6567);
+    tl.to("#s2-dot", { opacity: 0.842, duration: 0.0833, ease: "none" }, 11.7400);
+    tl.to("#s2-dot", { opacity: 0.937, duration: 0.0833, ease: "none" }, 11.8233);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 11.9067);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 11.9900);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 12.0733);
+    tl.to("#s2-dot", { opacity: 0.897, duration: 0.0833, ease: "none" }, 12.1567);
+    tl.to("#s2-dot", { opacity: 0.85, duration: 0.0833, ease: "none" }, 12.2400);
+    tl.to("#s2-dot", { opacity: 0.873, duration: 0.0833, ease: "none" }, 12.3233);
+    tl.to("#s2-dot", { opacity: 0.962, duration: 0.0833, ease: "none" }, 12.4067);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 12.4900);
+    tl.to("#s2-dot", { opacity: 1.0, duration: 0.0833, ease: "none" }, 12.5733);
+    tl.to("#s2-dot", { opacity: 0.997, duration: 0.0833, ease: "none" }, 12.6567);
+    tl.to("#s2-dot", { opacity: 0.922, duration: 0.0833, ease: "none" }, 12.7400);
+    tl.to("#s2-dot", { opacity: 0.952, duration: 0.0833, ease: "none" }, 12.8233);
+    tl.to("#s2-dot", { opacity: 0.964, duration: 0.0833, ease: "none" }, 12.9067);
+    tl.to("#s2-dot", { opacity: 0.974, duration: 0.0833, ease: "none" }, 12.9900);
+    window.__timelines["samples"] = tl;
+  </script>
+</template>

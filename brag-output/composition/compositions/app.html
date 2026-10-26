@@ -1,0 +1,188 @@
+<template>
+  <style>
+    
+@font-face { font-family: 'Segoe UI'; font-weight: 400; src: local('Segoe UI'); }
+@font-face { font-family: 'Segoe UI'; font-weight: 600; src: local('Segoe UI Semibold'); }
+@font-face { font-family: 'Segoe UI'; font-weight: 700; src: local('Segoe UI Bold'); }
+
+    #root { position: absolute; inset: 0; font-family: 'Segoe UI', system-ui, sans-serif; color: #ece9f7; }
+    #app-page { position: absolute; left: 340px; top: 80px; width: 1240px; height: 1010px; opacity: 0; }
+    #app-h1 { position: absolute; left: 0; top: 0; font-size: 64px; line-height: 76px; font-weight: 600; letter-spacing: .3px; white-space: nowrap; }
+    #app-h1 span { color: #ffb454; }
+    #app-sub { position: absolute; left: 0; top: 84px; width: 1240px; font-size: 28px; line-height: 42px; color: #9a96b5; }
+    .card { position: absolute; left: 0; width: 1240px; background: #1e1c27; border: 1px solid #34314a; border-radius: 22px; }
+    #app-prompt-card { top: 190px; height: 420px; }
+    .lab { position: absolute; left: 28px; font-size: 28px; line-height: 34px; color: #9a96b5; }
+    #app-ta { position: absolute; left: 28px; top: 70px; width: 1184px; height: 104px; background: #262434; border: 1px solid #34314a; border-radius: 14px; font-size: 32px; line-height: 102px; padding: 0 24px; white-space: nowrap; overflow: hidden; }
+    .sl { position: absolute; top: 204px; width: 281px; }
+    .sl-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 28px; line-height: 36px; color: #9a96b5; white-space: nowrap; }
+    .sl-top b { color: #7ee0c3; font-weight: 600; font-size: 30px; }
+    .rail { position: relative; margin-top: 24px; height: 8px; border-radius: 4px; background: #34314a; }
+    .fill { position: absolute; left: 0; top: 0; height: 8px; border-radius: 4px; background: #ffb454; }
+    .thumb { position: absolute; top: -7px; width: 22px; height: 22px; margin-left: -11px; border-radius: 11px; background: #ffb454; }
+    #app-go { position: absolute; left: 28px; top: 330px; width: 300px; height: 62px; border-radius: 14px; background: #ffb454; color: #2a1a00; font-size: 28px; font-weight: 600; line-height: 62px; text-align: center; }
+    #app-stop { position: absolute; left: 348px; top: 330px; width: 130px; height: 62px; border-radius: 14px; background: #262434; border: 1px solid #34314a; color: #ece9f7; font-size: 28px; font-weight: 600; line-height: 60px; text-align: center; opacity: .45; }
+    #app-out { top: 640px; height: 330px; opacity: 0; }
+    #app-outtext { position: absolute; left: 36px; top: 30px; width: 1168px; font-size: 38px; line-height: 60px; color: #ece9f7; }
+    .gw { color: #ffd9a0; opacity: 0; }
+    #app-stats { position: absolute; left: 0; top: 986px; width: 1240px; height: 44px; font-size: 28px; color: #9a96b5; opacity: 0; white-space: nowrap; }
+    #app-stats b { color: #ece9f7; font-weight: 600; }
+    #app-cntbox { display: inline-block; position: relative; width: 44px; height: 34px; vertical-align: bottom; }
+    .cn { position: absolute; left: 0; top: 0; color: #ece9f7; font-weight: 600; opacity: 0; }
+    #app-cursor { position: absolute; left: 0; top: 0; width: 44px; height: 44px; opacity: 0; transform-origin: 0 0; }
+  </style>
+  <div id="root" data-composition-id="app" data-width="1920" data-height="1080">
+    <div id="app-wrap" class="clip" data-start="0" data-duration="14.9" style="position:absolute;inset:0">
+      <div id="app-page" data-layout-allow-occlusion>
+        <div id="app-h1">Mini<span>GPT</span> Storyteller</div>
+        <div id="app-sub">A tiny GPT trained from scratch on TinyStories. It runs entirely in your browser, with no server and no network.</div>
+        <div id="app-prompt-card" class="card" data-layout-allow-overflow>
+          <div class="lab" style="top:26px">Story prompt</div>
+          <div id="app-ta">Once upon a time, there was a little bear named Tom.</div>
+          <div class="sl" style="left:28px">
+        <div class="sl-top"><span>Temperature</span><b>0.70</b></div>
+        <div class="rail"><div class="fill" style="width:46.7%"></div><div class="thumb" style="left:46.7%"></div></div>
+      </div><div class="sl" style="left:329px">
+        <div class="sl-top"><span>Top-k</span><b>40</b></div>
+        <div class="rail"><div class="fill" style="width:40.0%"></div><div class="thumb" style="left:40.0%"></div></div>
+      </div><div class="sl" style="left:630px">
+        <div class="sl-top"><span>Top-p</span><b>0.95</b></div>
+        <div class="rail"><div class="fill" style="width:94.4%"></div><div class="thumb" style="left:94.4%"></div></div>
+      </div><div class="sl" style="left:931px">
+        <div class="sl-top"><span>Max new tokens</span><b>150</b></div>
+        <div class="rail"><div class="fill" style="width:77.8%"></div><div class="thumb" style="left:77.8%"></div></div>
+      </div>
+          <div id="app-go">Generate story</div>
+          <div id="app-stop">Stop</div>
+        </div>
+        <div id="app-out" class="card">
+          <div id="app-outtext"><span>Once upon a time, there was a little bear named Tom.</span> <span id="app-w0" class="gw">Tom</span> <span id="app-w1" class="gw">loved</span> <span id="app-w2" class="gw">to</span> <span id="app-w3" class="gw">play</span> <span id="app-w4" class="gw">with</span> <span id="app-w5" class="gw">his</span> <span id="app-w6" class="gw">toy</span> <span id="app-w7" class="gw">cars</span> <span id="app-w8" class="gw">and</span> <span id="app-w9" class="gw">trucks.</span> <span id="app-w10" class="gw">One</span> <span id="app-w11" class="gw">day,</span> <span id="app-w12" class="gw">he</span> <span id="app-w13" class="gw">went</span> <span id="app-w14" class="gw">to</span> <span id="app-w15" class="gw">the</span> <span id="app-w16" class="gw">park</span> <span id="app-w17" class="gw">and</span> <span id="app-w18" class="gw">saw</span> <span id="app-w19" class="gw">a</span> <span id="app-w20" class="gw">big</span> <span id="app-w21" class="gw">red</span> <span id="app-w22" class="gw">car.</span> <span id="app-w23" class="gw">Tom</span> <span id="app-w24" class="gw">wanted</span> <span id="app-w25" class="gw">to</span> <span id="app-w26" class="gw">play</span> <span id="app-w27" class="gw">with</span> <span id="app-w28" class="gw">it</span> <span id="app-w29" class="gw">and</span> <span id="app-w30" class="gw">make</span> <span id="app-w31" class="gw">it</span> <span id="app-w32" class="gw">gold.</span> </div>
+        </div>
+        <div id="app-stats">Generated <span id="app-cntbox" data-layout-ignore><span id="app-c0" class="cn">1</span><span id="app-c1" class="cn">2</span><span id="app-c2" class="cn">3</span><span id="app-c3" class="cn">4</span><span id="app-c4" class="cn">5</span><span id="app-c5" class="cn">6</span><span id="app-c6" class="cn">7</span><span id="app-c7" class="cn">8</span><span id="app-c8" class="cn">9</span><span id="app-c9" class="cn">11</span><span id="app-c10" class="cn">12</span><span id="app-c11" class="cn">13</span><span id="app-c12" class="cn">14</span><span id="app-c13" class="cn">15</span><span id="app-c14" class="cn">16</span><span id="app-c15" class="cn">17</span><span id="app-c16" class="cn">18</span><span id="app-c17" class="cn">19</span><span id="app-c18" class="cn">20</span><span id="app-c19" class="cn">21</span><span id="app-c20" class="cn">22</span><span id="app-c21" class="cn">23</span><span id="app-c22" class="cn">24</span><span id="app-c23" class="cn">25</span><span id="app-c24" class="cn">26</span><span id="app-c25" class="cn">27</span><span id="app-c26" class="cn">28</span><span id="app-c27" class="cn">29</span><span id="app-c28" class="cn">30</span><span id="app-c29" class="cn">31</span><span id="app-c30" class="cn">32</span><span id="app-c31" class="cn">33</span><span id="app-c32" class="cn">36</span></span> <b>tokens</b> &nbsp;·&nbsp; <b>~540</b> tokens/s &nbsp;·&nbsp; (shown slowed down)</div>
+      </div>
+      <svg id="app-cursor" viewBox="0 0 24 24"><path d="M3 2 L3 19 L8 14.5 L11.5 22 L14.5 20.6 L11 13.2 L18 13 Z" fill="#ffffff" stroke="#14131a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // page arrives on the 4.02s beat (local 0.02)
+    tl.fromTo("#app-page", { opacity: 0, y: 70, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.8, ease: "power4.out" }, 0.02); // beat-grid: 4.02s
+    // simulated cursor travels to "Generate story", clicks at local 3.0
+    tl.set("#app-cursor", { x: 1500, y: 930 }, 0);
+    tl.fromTo("#app-cursor", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 1.5);
+    tl.to("#app-cursor", { x: 520, y: 640, duration: 1.4, ease: "power2.inOut" }, 1.5);
+    tl.fromTo("#app-cursor", { scale: 1 }, { scale: 0.86, duration: 0.07, ease: "power2.out", immediateRender: false }, 3.0);
+    tl.fromTo("#app-cursor", { scale: 0.86 }, { scale: 1, duration: 0.18, ease: "power2.out", immediateRender: false }, 3.07);
+    tl.fromTo("#app-go", { opacity: 1 }, { opacity: 0.55, duration: 0.08, ease: "power2.out" }, 3.0);
+    tl.to("#app-stop", { opacity: 1, duration: 0.2, ease: "power2.out" }, 3.05);
+    tl.to("#app-cursor", { opacity: 0, duration: 0.3, ease: "power2.in" }, 3.4);
+    // scroll down to the output card
+    tl.fromTo("#app-page", { y: 0 }, { y: -430, duration: 0.8, ease: "power2.inOut", immediateRender: false }, 3.3);
+    tl.fromTo("#app-out", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 3.5);
+    tl.fromTo("#app-stats", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 3.7);
+    // the story streams in, word by word (real model output); the token counter ticks with it
+    tl.fromTo("#app-w0", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 3.900);
+    tl.set("#app-c0", { opacity: 1 }, 3.900);
+    tl.fromTo("#app-w1", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 4.050);
+    tl.set("#app-c0", { opacity: 0 }, 4.050);
+    tl.set("#app-c1", { opacity: 1 }, 4.050);
+    tl.fromTo("#app-w2", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 4.200);
+    tl.set("#app-c1", { opacity: 0 }, 4.200);
+    tl.set("#app-c2", { opacity: 1 }, 4.200);
+    tl.fromTo("#app-w3", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 4.350);
+    tl.set("#app-c2", { opacity: 0 }, 4.350);
+    tl.set("#app-c3", { opacity: 1 }, 4.350);
+    tl.fromTo("#app-w4", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 4.500);
+    tl.set("#app-c3", { opacity: 0 }, 4.500);
+    tl.set("#app-c4", { opacity: 1 }, 4.500);
+    tl.fromTo("#app-w5", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 4.650);
+    tl.set("#app-c4", { opacity: 0 }, 4.650);
+    tl.set("#app-c5", { opacity: 1 }, 4.650);
+    tl.fromTo("#app-w6", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 4.800);
+    tl.set("#app-c5", { opacity: 0 }, 4.800);
+    tl.set("#app-c6", { opacity: 1 }, 4.800);
+    tl.fromTo("#app-w7", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 4.950);
+    tl.set("#app-c6", { opacity: 0 }, 4.950);
+    tl.set("#app-c7", { opacity: 1 }, 4.950);
+    tl.fromTo("#app-w8", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 5.100);
+    tl.set("#app-c7", { opacity: 0 }, 5.100);
+    tl.set("#app-c8", { opacity: 1 }, 5.100);
+    tl.fromTo("#app-w9", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 5.250);
+    tl.set("#app-c8", { opacity: 0 }, 5.250);
+    tl.set("#app-c9", { opacity: 1 }, 5.250);
+    tl.fromTo("#app-w10", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 5.400);
+    tl.set("#app-c9", { opacity: 0 }, 5.400);
+    tl.set("#app-c10", { opacity: 1 }, 5.400);
+    tl.fromTo("#app-w11", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 5.550);
+    tl.set("#app-c10", { opacity: 0 }, 5.550);
+    tl.set("#app-c11", { opacity: 1 }, 5.550);
+    tl.fromTo("#app-w12", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 5.700);
+    tl.set("#app-c11", { opacity: 0 }, 5.700);
+    tl.set("#app-c12", { opacity: 1 }, 5.700);
+    tl.fromTo("#app-w13", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 5.850);
+    tl.set("#app-c12", { opacity: 0 }, 5.850);
+    tl.set("#app-c13", { opacity: 1 }, 5.850);
+    tl.fromTo("#app-w14", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 6.000);
+    tl.set("#app-c13", { opacity: 0 }, 6.000);
+    tl.set("#app-c14", { opacity: 1 }, 6.000);
+    tl.fromTo("#app-w15", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 6.150);
+    tl.set("#app-c14", { opacity: 0 }, 6.150);
+    tl.set("#app-c15", { opacity: 1 }, 6.150);
+    tl.fromTo("#app-w16", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 6.300);
+    tl.set("#app-c15", { opacity: 0 }, 6.300);
+    tl.set("#app-c16", { opacity: 1 }, 6.300);
+    tl.fromTo("#app-w17", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 6.450);
+    tl.set("#app-c16", { opacity: 0 }, 6.450);
+    tl.set("#app-c17", { opacity: 1 }, 6.450);
+    tl.fromTo("#app-w18", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 6.600);
+    tl.set("#app-c17", { opacity: 0 }, 6.600);
+    tl.set("#app-c18", { opacity: 1 }, 6.600);
+    tl.fromTo("#app-w19", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 6.750);
+    tl.set("#app-c18", { opacity: 0 }, 6.750);
+    tl.set("#app-c19", { opacity: 1 }, 6.750);
+    tl.fromTo("#app-w20", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 6.900);
+    tl.set("#app-c19", { opacity: 0 }, 6.900);
+    tl.set("#app-c20", { opacity: 1 }, 6.900);
+    tl.fromTo("#app-w21", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 7.050);
+    tl.set("#app-c20", { opacity: 0 }, 7.050);
+    tl.set("#app-c21", { opacity: 1 }, 7.050);
+    tl.fromTo("#app-w22", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 7.200);
+    tl.set("#app-c21", { opacity: 0 }, 7.200);
+    tl.set("#app-c22", { opacity: 1 }, 7.200);
+    tl.fromTo("#app-w23", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 7.350);
+    tl.set("#app-c22", { opacity: 0 }, 7.350);
+    tl.set("#app-c23", { opacity: 1 }, 7.350);
+    tl.fromTo("#app-w24", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 7.500);
+    tl.set("#app-c23", { opacity: 0 }, 7.500);
+    tl.set("#app-c24", { opacity: 1 }, 7.500);
+    tl.fromTo("#app-w25", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 7.650);
+    tl.set("#app-c24", { opacity: 0 }, 7.650);
+    tl.set("#app-c25", { opacity: 1 }, 7.650);
+    tl.fromTo("#app-w26", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 7.800);
+    tl.set("#app-c25", { opacity: 0 }, 7.800);
+    tl.set("#app-c26", { opacity: 1 }, 7.800);
+    tl.fromTo("#app-w27", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 7.950);
+    tl.set("#app-c26", { opacity: 0 }, 7.950);
+    tl.set("#app-c27", { opacity: 1 }, 7.950);
+    tl.fromTo("#app-w28", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 8.100);
+    tl.set("#app-c27", { opacity: 0 }, 8.100);
+    tl.set("#app-c28", { opacity: 1 }, 8.100);
+    tl.fromTo("#app-w29", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 8.250);
+    tl.set("#app-c28", { opacity: 0 }, 8.250);
+    tl.set("#app-c29", { opacity: 1 }, 8.250);
+    tl.fromTo("#app-w30", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 8.400);
+    tl.set("#app-c29", { opacity: 0 }, 8.400);
+    tl.set("#app-c30", { opacity: 1 }, 8.400);
+    tl.fromTo("#app-w31", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 8.550);
+    tl.set("#app-c30", { opacity: 0 }, 8.550);
+    tl.set("#app-c31", { opacity: 1 }, 8.550);
+    tl.fromTo("#app-w32", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 8.700);
+    tl.set("#app-c31", { opacity: 0 }, 8.700);
+    tl.set("#app-c32", { opacity: 1 }, 8.700);
+    tl.to("#app-go", { opacity: 1, duration: 0.25, ease: "power2.out" }, 8.820);
+    tl.to("#app-stop", { opacity: 0.45, duration: 0.25, ease: "power2.out" }, 8.820);
+    // page clears just before the first stat card (film 14.5s to 15.0s)
+    tl.to("#app-page", { opacity: 0, filter: "blur(6px)", duration: 0.5, ease: "power2.inOut" }, 10.5);
+    window.__timelines["app"] = tl;
+  </script>
+</template>

@@ -1,0 +1,30 @@
+<template>
+  <style>
+    
+    #root { position: absolute; inset: 0; font-family: 'Inter', system-ui, sans-serif; color: #17171c; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .serif { font-family: 'EB Garamond', serif; }
+    .typ { display: inline-block; clip-path: inset(-12px 100% -12px -12px); }
+
+    #t-wrap { position: absolute; inset: 0; }
+    #t-rule { position: absolute; left: 200px; top: 330px; width: 1520px; height: 4px; background: #1d3fcf; }
+    #t-meta { position: absolute; left: 200px; top: 366px; font-size: 30px; letter-spacing: .08em; text-transform: uppercase; color: #5f5f6b; opacity: 0; }
+    #t-title { position: absolute; left: 196px; top: 430px; font-size: 168px; line-height: 180px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+    #t-sub { position: absolute; left: 200px; top: 650px; width: 1500px; font-size: 50px; line-height: 66px; color: #5f5f6b; opacity: 0; text-wrap: balance; }
+  </style>
+  <div id="root" data-composition-id="title" data-width="1920" data-height="1080">
+    <div id="t-wrap" class="clip" data-start="0" data-duration="3.27">
+      <div id="t-rule"></div>
+      <div id="t-meta" class="mono">Technical demo &middot; decoder-only transformer</div>
+      <div id="t-title" class="serif">MiniGPT Storyteller</div>
+      <div id="t-sub">A 5.31M-parameter language model that writes children&rsquo;s stories.</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#t-meta", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.15);
+    tl.fromTo("#t-sub", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.2);
+    tl.to("#t-wrap", { opacity: 0, duration: 0.25, ease: "power2.in" }, 3.02);
+    window.__timelines["title"] = tl;
+  </script>
+</template>

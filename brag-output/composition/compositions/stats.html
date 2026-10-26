@@ -1,0 +1,83 @@
+<template>
+  <style>
+    
+@font-face { font-family: 'Segoe UI'; font-weight: 400; src: local('Segoe UI'); }
+@font-face { font-family: 'Segoe UI'; font-weight: 600; src: local('Segoe UI Semibold'); }
+@font-face { font-family: 'Segoe UI'; font-weight: 700; src: local('Segoe UI Bold'); }
+
+    #root { position: absolute; inset: 0; font-family: 'Segoe UI', system-ui, sans-serif; color: #ece9f7; }
+    #stats-wrap { position: absolute; inset: 0; }
+    #stats-glow { position: absolute; left: 160px; top: 140px; width: 1600px; height: 800px; background: radial-gradient(ellipse at center, rgba(255,180,84,0.9) 0%, rgba(255,180,84,0) 62%); opacity: 0.2; }
+    .sc { position: absolute; top: 320px; width: 500px; height: 420px; background: #1e1c27; border: 1px solid #34314a; border-radius: 28px; opacity: 0; text-align: center; }
+    .sbig { margin-top: 54px; font-size: 150px; line-height: 160px; font-weight: 700; color: #ffb454; letter-spacing: -0.02em; }
+    .slab { margin-top: 20px; font-size: 38px; line-height: 46px; padding: 0 24px; color: #ece9f7; }
+    .ssub { margin-top: 20px; font-size: 30px; color: #9a96b5; }
+  </style>
+  <div id="root" data-composition-id="stats" data-width="1920" data-height="1080">
+    <div id="stats-wrap" class="clip" data-start="0" data-duration="4.4">
+      <div id="stats-glow"></div>
+      <div id="stats-c0" class="sc" data-layout-allow-occlusion style="left:160px"><div class="sbig" data-layout-allow-occlusion>5.31M</div><div class="slab" data-layout-allow-occlusion>parameters</div><div class="ssub" data-layout-allow-occlusion>val perplexity 9.4</div></div><div id="stats-c1" class="sc" data-layout-allow-occlusion style="left:710px"><div class="sbig" data-layout-allow-occlusion>3.7 h</div><div class="slab" data-layout-allow-occlusion>training on a laptop CPU</div><div class="ssub" data-layout-allow-occlusion>Intel i5-8250U, no GPU</div></div><div id="stats-c2" class="sc" data-layout-allow-occlusion style="left:1260px"><div class="sbig" data-layout-allow-occlusion>14 MB</div><div class="slab" data-layout-allow-occlusion>one offline HTML file</div><div class="ssub" data-layout-allow-occlusion>no server, no network</div></div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.set("#stats-glow", { opacity: 0.2 }, 0);
+    tl.fromTo("#stats-c0", { opacity: 0, y: 70, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.65, ease: "power4.out" }, 0.520); // beat-grid: 15.02s
+    tl.fromTo("#stats-c1", { opacity: 0, y: 70, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.65, ease: "power4.out" }, 1.520); // beat-grid: 16.02s
+    tl.fromTo("#stats-c2", { opacity: 0, y: 70, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.65, ease: "power4.out" }, 2.520); // beat-locked: 17.02s
+    tl.to("#stats-glow", { opacity: 0.243, duration: 0.0833, ease: "none" }, 0.0000);
+    tl.to("#stats-glow", { opacity: 0.246, duration: 0.0833, ease: "none" }, 0.0833);
+    tl.to("#stats-glow", { opacity: 0.245, duration: 0.0833, ease: "none" }, 0.1667);
+    tl.to("#stats-glow", { opacity: 0.246, duration: 0.0833, ease: "none" }, 0.2500);
+    tl.to("#stats-glow", { opacity: 0.246, duration: 0.0833, ease: "none" }, 0.3333);
+    tl.to("#stats-glow", { opacity: 0.263, duration: 0.0833, ease: "none" }, 0.4167);
+    tl.to("#stats-glow", { opacity: 0.27, duration: 0.0833, ease: "none" }, 0.5000);
+    tl.to("#stats-glow", { opacity: 0.264, duration: 0.0833, ease: "none" }, 0.5833);
+    tl.to("#stats-glow", { opacity: 0.256, duration: 0.0833, ease: "none" }, 0.6667);
+    tl.to("#stats-glow", { opacity: 0.252, duration: 0.0833, ease: "none" }, 0.7500);
+    tl.to("#stats-glow", { opacity: 0.265, duration: 0.0833, ease: "none" }, 0.8333);
+    tl.to("#stats-glow", { opacity: 0.267, duration: 0.0833, ease: "none" }, 0.9167);
+    tl.to("#stats-glow", { opacity: 0.258, duration: 0.0833, ease: "none" }, 1.0000);
+    tl.to("#stats-glow", { opacity: 0.247, duration: 0.0833, ease: "none" }, 1.0833);
+    tl.to("#stats-glow", { opacity: 0.246, duration: 0.0833, ease: "none" }, 1.1667);
+    tl.to("#stats-glow", { opacity: 0.248, duration: 0.0833, ease: "none" }, 1.2500);
+    tl.to("#stats-glow", { opacity: 0.243, duration: 0.0833, ease: "none" }, 1.3333);
+    tl.to("#stats-glow", { opacity: 0.275, duration: 0.0833, ease: "none" }, 1.4167);
+    tl.to("#stats-glow", { opacity: 0.287, duration: 0.0833, ease: "none" }, 1.5000);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 1.5833);
+    tl.to("#stats-glow", { opacity: 0.282, duration: 0.0833, ease: "none" }, 1.6667);
+    tl.to("#stats-glow", { opacity: 0.284, duration: 0.0833, ease: "none" }, 1.7500);
+    tl.to("#stats-glow", { opacity: 0.28, duration: 0.0833, ease: "none" }, 1.8333);
+    tl.to("#stats-glow", { opacity: 0.299, duration: 0.0833, ease: "none" }, 1.9167);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 2.0000);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 2.0833);
+    tl.to("#stats-glow", { opacity: 0.296, duration: 0.0833, ease: "none" }, 2.1667);
+    tl.to("#stats-glow", { opacity: 0.287, duration: 0.0833, ease: "none" }, 2.2500);
+    tl.to("#stats-glow", { opacity: 0.275, duration: 0.0833, ease: "none" }, 2.3333);
+    tl.to("#stats-glow", { opacity: 0.287, duration: 0.0833, ease: "none" }, 2.4167);
+    tl.to("#stats-glow", { opacity: 0.295, duration: 0.0833, ease: "none" }, 2.5000);
+    tl.to("#stats-glow", { opacity: 0.296, duration: 0.0833, ease: "none" }, 2.5833);
+    tl.to("#stats-glow", { opacity: 0.271, duration: 0.0833, ease: "none" }, 2.6667);
+    tl.to("#stats-glow", { opacity: 0.274, duration: 0.0833, ease: "none" }, 2.7500);
+    tl.to("#stats-glow", { opacity: 0.285, duration: 0.0833, ease: "none" }, 2.8333);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 2.9167);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 3.0000);
+    tl.to("#stats-glow", { opacity: 0.296, duration: 0.0833, ease: "none" }, 3.0833);
+    tl.to("#stats-glow", { opacity: 0.285, duration: 0.0833, ease: "none" }, 3.1667);
+    tl.to("#stats-glow", { opacity: 0.283, duration: 0.0833, ease: "none" }, 3.2500);
+    tl.to("#stats-glow", { opacity: 0.281, duration: 0.0833, ease: "none" }, 3.3333);
+    tl.to("#stats-glow", { opacity: 0.287, duration: 0.0833, ease: "none" }, 3.4167);
+    tl.to("#stats-glow", { opacity: 0.294, duration: 0.0833, ease: "none" }, 3.5000);
+    tl.to("#stats-glow", { opacity: 0.297, duration: 0.0833, ease: "none" }, 3.5833);
+    tl.to("#stats-glow", { opacity: 0.288, duration: 0.0833, ease: "none" }, 3.6667);
+    tl.to("#stats-glow", { opacity: 0.286, duration: 0.0833, ease: "none" }, 3.7500);
+    tl.to("#stats-glow", { opacity: 0.285, duration: 0.0833, ease: "none" }, 3.8333);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 3.9167);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 4.0000);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 4.0833);
+    tl.to("#stats-glow", { opacity: 0.3, duration: 0.0833, ease: "none" }, 4.1667);
+    tl.to("#stats-glow", { opacity: 0.288, duration: 0.0833, ease: "none" }, 4.2500);
+    tl.to("#stats-wrap", { opacity: 0, duration: 0.4, ease: "power2.in" }, 4.0);
+    window.__timelines["stats"] = tl;
+  </script>
+</template>

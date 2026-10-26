@@ -1,0 +1,30 @@
+<template>
+  <style>
+    
+@font-face { font-family: 'Segoe UI'; font-weight: 400; src: local('Segoe UI'); }
+@font-face { font-family: 'Segoe UI'; font-weight: 600; src: local('Segoe UI Semibold'); }
+@font-face { font-family: 'Segoe UI'; font-weight: 700; src: local('Segoe UI Bold'); }
+
+    #root { position: absolute; inset: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    #hook-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .big { font-size: 160px; line-height: 172px; font-weight: 700; color: #ece9f7; letter-spacing: -0.02em; text-align: center; white-space: nowrap; }
+    .typ { display: inline-block; clip-path: inset(-24px 100% -24px -24px); }
+    .amb { color: #ffb454; }
+    #hook-sub { margin-top: 40px; font-size: 56px; font-weight: 400; color: #9a96b5; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1920" data-height="1080">
+    <div id="hook-wrap" class="clip" data-start="0" data-duration="4.0">
+      <div class="big"><span id="hook-l1" class="typ">I trained a GPT</span></div>
+      <div class="big amb"><span id="hook-l2" class="typ">from scratch.</span></div>
+      <div id="hook-sub">On a laptop CPU.</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#hook-l1", { clipPath: "inset(-24px 100% -24px -24px)" }, { clipPath: "inset(-24px -24px -24px -24px)", duration: 0.7, ease: "steps(15)" }, 0.15);
+    tl.fromTo("#hook-l2", { clipPath: "inset(-24px 100% -24px -24px)" }, { clipPath: "inset(-24px -24px -24px -24px)", duration: 0.6, ease: "steps(13)" }, 0.9);
+    tl.fromTo("#hook-sub", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, 1.5);
+    tl.fromTo("#hook-wrap", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: 0.26, ease: "power3.in" }, 3.7199999999999998);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

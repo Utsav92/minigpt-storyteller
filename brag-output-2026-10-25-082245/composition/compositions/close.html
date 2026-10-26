@@ -1,0 +1,40 @@
+<template>
+  <style>
+    
+    #root { position: absolute; inset: 0; font-family: 'Inter', system-ui, sans-serif; color: #17171c; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .serif { font-family: 'EB Garamond', serif; }
+    .typ { display: inline-block; clip-path: inset(-12px 100% -12px -12px); }
+
+    #c-wrap { position: absolute; inset: 0; }
+    #c-rule { position: absolute; left: 200px; top: 230px; width: 1520px; height: 4px; background: #1d3fcf; opacity: 0; }
+    #c-title { position: absolute; left: 196px; top: 270px; font-size: 140px; line-height: 150px; font-weight: 700; white-space: nowrap; opacity: 0; }
+    #c-sub { position: absolute; left: 200px; top: 450px; font-size: 54px; line-height: 64px; color: #5f5f6b; opacity: 0; }
+    #c-hr { position: absolute; left: 200px; top: 590px; width: 1520px; height: 2px; background: #d6d2c6; opacity: 0; }
+    #c-llab { position: absolute; left: 200px; top: 620px; font-size: 28px; letter-spacing: .08em; text-transform: uppercase; color: #5f5f6b; opacity: 0; }
+    #c-lim { position: absolute; left: 200px; top: 668px; font-size: 52px; line-height: 64px; opacity: 0; }
+    #c-credit { position: absolute; left: 200px; top: 890px; font-size: 28px; color: #5f5f6b; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="close" data-width="1920" data-height="1080">
+    <div id="c-wrap" class="clip" data-start="0" data-duration="3.16">
+      <div id="c-rule"></div>
+      <div id="c-title" class="serif">MiniGPT Storyteller</div>
+      <div id="c-sub">Runs entirely in your browser.</div>
+      <div id="c-hr"></div>
+      <div id="c-llab" class="mono">Limitations</div>
+      <div id="c-lim">Repeats itself. Simple stories only.</div>
+      <div id="c-credit" class="mono">Music: Sascha Ende, ende.app (CC BY 4.0)</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#c-rule", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.0);
+    tl.fromTo("#c-title", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.05);
+    tl.fromTo("#c-sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, 0.3);
+    tl.fromTo("#c-hr", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.45);
+    tl.fromTo("#c-llab", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.53);
+    tl.fromTo("#c-lim", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.45, ease: "power4.out" }, 0.53); // beat-locked: abs 22.37s
+    tl.fromTo("#c-credit", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.55);
+    window.__timelines["close"] = tl;
+  </script>
+</template>
